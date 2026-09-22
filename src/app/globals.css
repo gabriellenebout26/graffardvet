@@ -1,0 +1,234 @@
+:root {
+  --ardoise: #3c5b74;
+  --ardoise-clair: #5a7d99;
+  --ardoise-pale: #e8eef3;
+  --encre: #1b2733;
+  --gris: #6b7785;
+  --gris-pale: #f4f6f8;
+  --bord: #dde3e9;
+  --blanc: #ffffff;
+  --libre: #2f7d5c;
+  --libre-pale: #e6f2eb;
+  --bloque: #b3413a;
+  --bloque-pale: #fbeceb;
+  --ambre: #a8751f;
+  --ambre-pale: #fdf3e2;
+
+  --serif: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+  --r: 6px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--gris-pale);
+  color: var(--encre);
+  font-family: var(--sans);
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: 0.01em; margin: 0; }
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.35rem; }
+h3 { font-size: 1.1rem; }
+
+a { color: var(--ardoise); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+/* ---------- Structure ---------- */
+.app { display: flex; min-height: 100vh; }
+
+.nav {
+  width: 218px;
+  flex: none;
+  background: var(--ardoise);
+  color: #dce6ee;
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+.nav .marque {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--blanc);
+  padding: 0 1.25rem 0.25rem;
+  letter-spacing: 0.04em;
+}
+.nav .sous-marque {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #9fb8cc;
+  padding: 0 1.25rem 1.5rem;
+}
+.nav a {
+  display: block;
+  padding: 0.55rem 1.25rem;
+  color: #cddaE5;
+  font-size: 0.92rem;
+  border-left: 3px solid transparent;
+}
+.nav a:hover { background: rgba(255,255,255,0.07); text-decoration: none; }
+.nav a.actif { background: rgba(255,255,255,0.12); color: var(--blanc); border-left-color: var(--blanc); }
+.nav .pied {
+  margin-top: auto;
+  padding: 1rem 1.25rem 0;
+  font-size: 0.75rem;
+  color: #9fb8cc;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.contenu { flex: 1; min-width: 0; padding: 2rem 2.25rem; max-width: 1400px; }
+.entete { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.entete p { margin: 0.35rem 0 0; color: var(--gris); font-size: 0.9rem; }
+
+/* ---------- Blocs ---------- */
+.carte {
+  background: var(--blanc);
+  border: 1px solid var(--bord);
+  border-radius: var(--r);
+  padding: 1.25rem;
+}
+.carte + .carte { margin-top: 1rem; }
+
+.etiquette {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gris);
+}
+
+/* ---------- Pastilles ---------- */
+.pip { width: 9px; height: 9px; border-radius: 50%; flex: none; display: inline-block; }
+.pip.libre { background: var(--libre); }
+.pip.bloque { background: var(--bloque); }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 0.22rem 0.55rem; border-radius: 3px;
+}
+.badge.libre { background: var(--libre-pale); color: var(--libre); }
+.badge.bloque { background: var(--bloque-pale); color: var(--bloque); }
+.badge.neutre { background: var(--ardoise-pale); color: var(--ardoise); }
+.badge.attente { background: var(--ambre-pale); color: var(--ambre); }
+
+/* ---------- Deux panneaux (Vet List) ---------- */
+.deux-panneaux { display: grid; grid-template-columns: 360px 1fr; gap: 1rem; align-items: start; }
+.panneau {
+  background: var(--blanc);
+  border: 1px solid var(--bord);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.liste-chevaux { max-height: calc(100vh - 260px); overflow-y: auto; }
+.ligne-cheval {
+  display: flex; align-items: center; gap: 0.7rem;
+  width: 100%; text-align: left; background: none; border: 0;
+  border-bottom: 1px solid var(--bord);
+  padding: 0.7rem 1rem; cursor: pointer;
+}
+.ligne-cheval:hover { background: var(--gris-pale); }
+.ligne-cheval.selection { background: var(--ardoise-pale); }
+.ligne-cheval .nom { flex: 1; min-width: 0; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ligne-cheval .info { font-family: var(--mono); font-size: 0.74rem; color: var(--gris); flex: none; }
+
+/* ---------- Tableaux ---------- */
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+th {
+  text-align: left; font-family: var(--mono); font-weight: 500;
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--gris); padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--bord);
+  white-space: nowrap;
+}
+td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--bord); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+.num { font-family: var(--mono); font-size: 0.82rem; white-space: nowrap; }
+
+/* ---------- Formulaires ---------- */
+.champ { display: block; margin-bottom: 1rem; }
+.champ > span {
+  display: block; margin-bottom: 0.3rem;
+  font-family: var(--mono); font-size: 0.68rem;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris);
+}
+input[type=text], input[type=date], input[type=number], input[type=email], select, textarea {
+  width: 100%; padding: 0.5rem 0.65rem;
+  border: 1px solid var(--bord); border-radius: var(--r);
+  background: var(--blanc);
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--ardoise-clair); outline-offset: -1px; border-color: var(--ardoise-clair); }
+.grille-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+.grille-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0 1rem; }
+
+.bouton {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 0.95rem; border-radius: var(--r);
+  background: var(--ardoise); color: var(--blanc);
+  border: 1px solid var(--ardoise); cursor: pointer; font-size: 0.9rem;
+}
+.bouton:hover { background: #33506a; text-decoration: none; }
+.bouton:disabled { opacity: 0.5; cursor: not-allowed; }
+.bouton.secondaire { background: var(--blanc); color: var(--ardoise); }
+.bouton.secondaire:hover { background: var(--ardoise-pale); }
+.bouton.danger { background: var(--blanc); color: var(--bloque); border-color: #e3b8b5; }
+.bouton.danger:hover { background: var(--bloque-pale); }
+.bouton.petit { padding: 0.32rem 0.6rem; font-size: 0.8rem; }
+
+.barre-outils { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+
+.message { padding: 0.7rem 0.9rem; border-radius: var(--r); font-size: 0.88rem; margin-bottom: 1rem; }
+.message.erreur { background: var(--bloque-pale); color: var(--bloque); }
+.message.succes { background: var(--libre-pale); color: var(--libre); }
+.message.info { background: var(--ardoise-pale); color: var(--ardoise); }
+
+.vide { padding: 2.5rem 1rem; text-align: center; color: var(--gris); font-size: 0.9rem; }
+
+/* ---------- Fiches (téléphone) ---------- */
+.fiches-mobile { display: none; }
+.fiche { border: 1px solid var(--bord); border-radius: var(--r); padding: 0.85rem; }
+.fiche + .fiche { margin-top: 0.7rem; }
+.fiche-tete { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.fiche-tete a { font-weight: 600; font-size: 1rem; }
+.fiche-produit { font-family: var(--serif); font-size: 1.15rem; margin-top: 0.35rem; }
+.fiche-posologie { color: var(--gris); font-size: 0.88rem; }
+.fiche-infos {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem; margin: 0.8rem 0; padding: 0.6rem 0;
+  border-top: 1px solid var(--bord); border-bottom: 1px solid var(--bord);
+}
+.fiche-infos div { min-width: 0; }
+.fiche-infos dt {
+  font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--gris);
+}
+.fiche-infos dd { margin: 0.15rem 0 0; font-family: var(--mono); font-size: 0.8rem; }
+.fiche .barre-outils .bouton { flex: 1; justify-content: center; padding: 0.55rem 0.5rem; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px) {
+  .app { flex-direction: column; }
+  .nav { width: 100%; flex-direction: row; flex-wrap: wrap; align-items: center; padding: 0.75rem 1rem; gap: 0.25rem; }
+  .nav .marque { font-size: 1.15rem; padding: 0; }
+  .nav .sous-marque, .nav .pied { display: none; }
+  .nav a { padding: 0.35rem 0.6rem; border-left: 0; border-radius: 3px; font-size: 0.85rem; }
+  .nav a.actif { border-left: 0; }
+  .contenu { padding: 1.1rem; }
+  .deux-panneaux { grid-template-columns: 1fr; }
+  .liste-chevaux { max-height: 46vh; }
+  .grille-2, .grille-3 { grid-template-columns: 1fr; }
+  .tableau-defilant { overflow-x: auto; }
+  .fiches-mobile { display: block; }
+  .tableau-bureau { display: none; }
+}
